@@ -1,0 +1,45 @@
+
+--Ejercicio 1
+CREATE OR REPLACE PROCEDURE Mostrarserieid(vtitulo VARCHAR2)
+IS
+VSERIEDID SERIE:SERIE_ID%TYPE;
+BEGIN
+    SELECT SERIE_ID INTO VSERIEID FROM SERIE WHERE SERIE_TITULO = vitulo;
+    dbms_output.put_line(vseriedid);
+    EXCEPTION
+    WHEN TOO_MANY_ROWS THEN
+    DBMS_OUTPUT.PUT_LINE('Hay mas de una serie');
+    WHEN NO_DATA_FOUND THEN
+    DBMS_OUPUT.PUTLINE('No hay ninguna serie');
+    
+    
+END;
+
+BEGIN
+    mostrarserieid('x')
+END;
+
+
+--EJERCICIO 2
+
+CREATE OR REPLACE PROCEDURE Mostrarcapitulos(v_seried VARCHAR2)
+IS
+num_capitulos integer;
+BEGIN
+    SELECT COUNT (CAPITULO) INTO NUM_CAPITULOS FROM CAPITULO WHERE SERIE_ID = V_SERIEID;
+    DBMS_OUTPUT.PUT_LINE(NUM_CAPITULOS)
+END;
+
+
+--Ejercicio 3
+
+
+CREATE OR REPLACE PROCEDURE Mostrarnumeroperso(v_actorid VARCHAR2)
+IS
+    vactor integer;
+BEGIN
+    SELECT COUNT(r.serie_id) INTO vactorid FROM ACTOR A JOIN REPARTO R ON A.ACTOR_ID = R.ACTOR_ID WHERE
+    A.ACTOR_NOMBRE = V_ACTORID;
+    DMBS_OUTPUT.PUT_LINE(VACTORID);
+END ;
+    
